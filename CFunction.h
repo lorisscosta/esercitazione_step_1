@@ -1,8 +1,6 @@
 /*! @file CFunction.h
 	@brief A virtual base class for functions of a single variable
-	@author Paolo Gastaldo
-
-	Details.
+	@author Federico Maria Biasioli Costanzo Loris
 */ 
 
 #ifndef FUNCTION_H
@@ -19,18 +17,18 @@ class Function {
 		
 public:
     
-	/// @name CONSTRUCTORS/DESTRUCTOR
+	/// @name Costruttori/Distruttore
 	/// @{
     Function(){};
     virtual ~Function(){};
 	/// @}
 
-	/// @name GETTERS
+	/// @name Getter
 	/// @{
 	virtual double GetValue(double in)=0;
 	/// @}
 
-	/// @name DEBUG 
+	/// @name Debug 
 	/// @{
 	virtual void Dump()=0;
 	/// @}

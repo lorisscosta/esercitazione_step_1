@@ -1,45 +1,37 @@
 /*! @file CPower.cpp
     @brief File CPP della classe Power
     @author Federico Maria Biasioli Loris Costanzo
-
-    Details.
 */
 
 #include "CPower.h"
 
 /// @brief costruttore di default
 Power::Power(){
-    e_coeff=-1;
-    k_coeff=-1;
+    e_coeff=0;
+    k_coeff=0;
 }
 
 /// @brief costruttore
 /// @param e_coeff esponente dell'esponenziale
 /// @param k_coeff coefficiente dell'esponenziale
 Power::Power(double e_coefficient, double k_coefficient){
-    e_coeff=-1;
-    k_coeff=-1;
+    e_coeff=0;
+    k_coeff=0;
     SetPower(e_coefficient,k_coefficient);
 }
 
 /// @brief costruttore di copia
 Power::Power(const Power& p){
-    if(p.e_coeff==-1){
-        ErrorMessage("Costruttore di copia: L'oggetto non ha esponente");
-        exit(-1);
-    }
-    if(p.k_coeff==-1){
-        ErrorMessage("Costruttore di copia: L'oggetto non ha coefficiente");
-        exit(-1);
-    }
     e_coeff = p.e_coeff;
     k_coeff = p.k_coeff;
 }
 
 /** 
-* @brief destructor
+* @brief distruttore
 */
-Power::~Power(){}
+Power::~Power(){
+    Reset();
+}
 
 /** 
 * @brief overload operatore =
@@ -47,14 +39,6 @@ Power::~Power(){}
 * @return copia dell'oggetto
 */
 Power& Power::operator=(const Power& p){
-    if(p.e_coeff==-1){
-        ErrorMessage("Costruttore di copia: L'oggetto non ha esponente");
-        exit(-1);
-    }
-    if(p.k_coeff==-1){
-        ErrorMessage("Costruttore di copia: L'oggetto non ha coefficiente");
-        exit(-1);
-    }
     e_coeff = p.e_coeff;
     k_coeff = p.k_coeff;
     return *this;
@@ -82,7 +66,7 @@ bool Power::operator==(const Power& p){
 */
 void Power::SetPower(double new_k_coeff, double new_e_coeff)
 {
-    if(k_coeff!=-1&&e_coeff!=-1)
+    if(k_coeff!=0||e_coeff!=0)
     {
         Reset();
     }
@@ -94,54 +78,31 @@ void Power::SetPower(double new_k_coeff, double new_e_coeff)
  * @brief resetta la potenza
  */
 void Power::Reset(){
-    e_coeff=-1;
-    k_coeff=-1;
+    e_coeff=0;
+    k_coeff=0;
 }
 
 /**
- * @brief writes an error message 
- * @param string message to be printed
- */
-void Power::ErrorMessage(const char *string) {
-	
-	cout << endl << "ERROR -- Power --";
-	cout << string << endl;
-
-}
-
-/**
- * @brief writes a warning message
- * @param string message to be printed
- */ 
-void Power::WarningMessage(const char *string) {
-	
-	cout << endl << "WARNING -- Power --";
-	cout << string << endl;
-
-}
-
-/**
- * @brief gives the status of the object
+ * @brief da lo stato dell'oggetto
  */ 
 void Power::Dump() {
-	
-	if (k_coeff == -1 || e_coeff == -1) {
-		cout << "Uninitialized power" << endl;
-		return;
-	}
 	cout << "Potenza: " << e_coeff << endl;
     cout << "Coefficiente della potenza: " << k_coeff <<endl;
 	cout << endl;
 }
 
-double Power::GetValue(double x,const Power& p){
+/**
+ * @brief da il risultato
+ * @param in valore della base dell'esponente
+ */ 
+double Power::GetValue(double in){
     double result;
-    double pow=x;
+    double x=in;
     int i;
-    for(i=0;i<p.e_coeff;i++)
+    for(i=1;i<e_coeff;i++)
     {
-        pow=pow*x;
+        x=x*in;
     }
-    result=pow*p.k_coeff;
+    result=x*k_coeff;
 	return result;
 }

@@ -1,5 +1,5 @@
 /*! @file CPolynomial.h
-	@brief A class for polynomial functions 
+	@brief Classe per i polinomi
 	@author Federico Maria Biasioli Loris Costanzo
 
 	Details.
@@ -21,7 +21,7 @@ private:
     int degree; 												// grado del polinomio 
 
 public:
-	/// @name CONSTRUCTORs and DESTRUCTOR 
+	/// @name Costruttori e distruttori
 	/// @{
     Polynomial();  // costruttore di default 
 	Polynomial(const double* coefficients, int size); 			// costruttore di default con passaggio di parametri 
@@ -29,7 +29,7 @@ public:
     ~Polynomial();												// distruttore dei Polynomial
 	/// @}
 
-	/// @name OPERATORS 
+	/// @name Operatori 
 	/// @{
     Polynomial& operator=(const Polynomial& p); 				// overload dell'operatore =
 	Polynomial operator+(const Polynomial& p); 					// overload dell'operatore +
@@ -42,7 +42,7 @@ public:
 	
 	void Reset();												// metodo per resettare l'oggetto
 
-	/// @name DEBUG and SERIALIZATION 
+	/// @name Debug e serializzazione
 	/// @{
 	void ErrorMessage(const char *string); 						// metodo che stampa gli errori
 	void WarningMessage(const char *string);					// metodo che stampa i warning

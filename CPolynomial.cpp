@@ -1,12 +1,12 @@
 /** 
  * @file CPolynomial.cpp
- *	@brief Implementation of Polynomial class 
+ *	@brief Implementazione della classe CPolynomial.h
  *	@author Federico Maria Biasioli Loris Costanzo
  */ 
 #include "CPolynomial.h"
 
 /**
- * @brief default constructor (not a meaningful polynom)
+ * @brief costruttore di default
  */
 Polynomial::Polynomial() {
 	degree=-1;
@@ -15,9 +15,9 @@ Polynomial::Polynomial() {
 
 
 /**
- * @brief constructor
- * @param coefficients array with the coefficients (format: c0+c1*x+ ...)
- * @param size size of the array 
+ * @brief costruttore
+ * @param coefficients array con i coefficienti
+ * @param size dimensione degli array
  */
 Polynomial::Polynomial(const double* coefficients, int size) {
 	degree = -1;
@@ -26,7 +26,7 @@ Polynomial::Polynomial(const double* coefficients, int size) {
 }
 
 /**
- * @brief decontructor
+ * @brief distruttore
  */
 Polynomial::~Polynomial() {
     
@@ -37,7 +37,7 @@ Polynomial::~Polynomial() {
 }
 
 /**
- * @brief copy constructor
+ * @brief copia costruttore
  */
 Polynomial::Polynomial(const Polynomial& p) {
 	
@@ -59,9 +59,9 @@ Polynomial::Polynomial(const Polynomial& p) {
 }
 
 /**
- * @brief overload operator =
- * @param p object to be copied
- * @return a copy of the object
+ * @brief overload operatore =
+ * @param p oggetto da copiare
+ * @return copia dell'oggetto
  */
 Polynomial& Polynomial::operator=(const Polynomial& p) {
     
@@ -82,7 +82,7 @@ Polynomial& Polynomial::operator=(const Polynomial& p) {
     return *this;
 }
 
-/// @brief overload operator ==
+/// @brief overload operatore ==
 bool Polynomial::operator==(const Polynomial& p) {
 	
 	int i;
@@ -100,9 +100,9 @@ bool Polynomial::operator==(const Polynomial& p) {
 }
 
 /**
- * @brief sets the coefficients of the polynomial
- * @param coefficients array with the coefficients (format: c0+c1*x+ ...)
- * @param size size of the array
+ * @brief imposta i coefficienti del polinomio
+ * @param coefficients array con i coefficients (format: c0+c1*x+ ...)
+ * @param size dimensioni dell'array
  */
 void Polynomial::SetPolynomial(const double* coefficients, int size) {
 	
@@ -129,9 +129,9 @@ void Polynomial::SetPolynomial(const double* coefficients, int size) {
 }
 
 /**
- * @brief returns the value of the function, given an input
- * @param in the input
- * @return the value of the function
+ * @brief ristituisce il valore della funzione
+ * @param in input
+ * @return valore della funzione
  */
 double Polynomial::GetValue(double in) const {
     int i;
@@ -148,7 +148,7 @@ double Polynomial::GetValue(double in) const {
 }
 
 /**
- * @brief resets the polynomial
+ * @brief resetta il polinomio
  */ 
 void Polynomial::Reset() {
 	
@@ -160,8 +160,8 @@ void Polynomial::Reset() {
 }
 
 /**
- * @brief writes an error message 
- * @param string message to be printed
+ * @brief scrive un messaggio di errore 
+ * @param string messaggio da stampare
  */
 void Polynomial::ErrorMessage(const char *string) {
 	
@@ -171,8 +171,8 @@ void Polynomial::ErrorMessage(const char *string) {
 }
 
 /**
- * @brief writes a warning message
- * @param string message to be printed
+ * @brief scrive un messaggio di warning
+ * @param string messaggio da stampare
  */ 
 void Polynomial::WarningMessage(const char *string) {
 	
@@ -182,7 +182,7 @@ void Polynomial::WarningMessage(const char *string) {
 }
 
 /**
- * @brief gives the status of the object
+ * @brief da lo stato dell'oggetto
  */ 
 void Polynomial::Dump() {
 
