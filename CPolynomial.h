@@ -1,12 +1,10 @@
-/*! @file CPolynomial.h
-	@brief Classe per i polinomi
+/*! @file CPolinomial.h
+	@brief file h for class polinomial
 	@author Federico Maria Biasioli Loris Costanzo
-
-	Details.
 */ 
 
-#ifndef POLYNOMIAL_H
-#define POLYNOMIAL_H
+#ifndef POLINOMIAL_H
+#define POLINOMIAL_H
 
 #include <iostream>
 #include <cmath>
@@ -14,39 +12,49 @@
 #include "CFunction.h"
 
 using namespace std;
-
-class Polynomial:public Function {
+/// @class Polinomial
+/// @brief class polinomial
+class Polinomial:public Function {
 private:
-    double* coeff;  											// puntatore ad array di double
-    int degree; 												// grado del polinomio 
+    double* coeff;  											
+    int degree; 												
 
 public:
-	/// @name Costruttori e distruttori
+	/// @name Constructors and Destructor 
 	/// @{
-    Polynomial();  // costruttore di default 
-	Polynomial(const double* coefficients, int size); 			// costruttore di default con passaggio di parametri 
-    Polynomial(const Polynomial& p); 							// costruttore di copia 
-    ~Polynomial();												// distruttore dei Polynomial
+    Polinomial();  
+	Polinomial(const double* coefficients, int size); 			
+    Polinomial(const Polinomial& p); 							
+    ~Polinomial();												
 	/// @}
 
-	/// @name Operatori 
+	/// @name Operators
 	/// @{
-    Polynomial& operator=(const Polynomial& p); 				// overload dell'operatore =
-	Polynomial operator+(const Polynomial& p); 					// overload dell'operatore +
-	bool operator==(const Polynomial& p); 						// overload dell'operatore ==
+    Polinomial& operator=(const Polinomial& p); 				
+	Polinomial operator+(const Polinomial& p); 					
+	bool operator==(const Polinomial& p); 						
 	/// @}
 
+	///@name Setter
+	///@{
+	void SetPolinomial(const double* coefficients, int size);	
+	/// @}
 
-	void SetPolynomial(const double* coefficients, int size);	// SETTER per l'attributo
-    double GetValue(double in) const;							// metodo che restituisce il valore del polinomio valutato in (in)
+	///@name Getter
+	///@{
+    double GetValue(double in);							
+	/// @}
 	
-	void Reset();												// metodo per resettare l'oggetto
+	/// @name Basic function
+    /// @{
+	void Reset();												
+	/// @}
 
-	/// @name Debug e serializzazione
+	/// @name Debug e serialization
 	/// @{
-	void ErrorMessage(const char *string); 						// metodo che stampa gli errori
-	void WarningMessage(const char *string);					// metodo che stampa i warning
-	void Dump();												// metodo dump
+	void ErrorMessage(const char *string); 						
+	void WarningMessage(const char *string);					
+	void Dump();												
 	/// @}
 };
 

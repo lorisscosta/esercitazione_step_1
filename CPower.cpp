@@ -1,42 +1,43 @@
 /*! @file CPower.cpp
-    @brief File CPP della classe Power
+    @brief Implementetion of class power
     @author Federico Maria Biasioli Loris Costanzo
 */
 
 #include "CPower.h"
 
-/// @brief costruttore di default
+/// @brief defaul constructor
 Power::Power(){
-    e_coeff=0;
+    e_coeff=-0.00001;
     k_coeff=0;
 }
 
-/// @brief costruttore
-/// @param e_coeff esponente dell'esponenziale
-/// @param k_coeff coefficiente dell'esponenziale
+/// @brief constructor
+/// @param e_coeff exponent
+/// @param k_coeff coefficient of the power
 Power::Power(double e_coefficient, double k_coefficient){
     e_coeff=0;
     k_coeff=0;
     SetPower(e_coefficient,k_coefficient);
 }
 
-/// @brief costruttore di copia
+/** 
+* @brief copy constructor
+* @param p object to copy
+*/
 Power::Power(const Power& p){
     e_coeff = p.e_coeff;
     k_coeff = p.k_coeff;
 }
 
-/** 
-* @brief distruttore
-*/
+/// @brief destructor
 Power::~Power(){
     Reset();
 }
 
 /** 
-* @brief overload operatore =
-* @param p oggetto da copiare
-* @return copia dell'oggetto
+* @brief overload operator =
+* @param p object to copy
+* @return copy of the object
 */
 Power& Power::operator=(const Power& p){
     e_coeff = p.e_coeff;
@@ -45,7 +46,9 @@ Power& Power::operator=(const Power& p){
 }
 
 /** 
-* @brief overload operatore ==
+* @brief overload operator ==
+* @param p object to check
+* @return true o false
 */
 bool Power::operator==(const Power& p){
     if(e_coeff!=p.e_coeff)
@@ -60,13 +63,13 @@ bool Power::operator==(const Power& p){
 }
 
 /** 
-* @brief setta i parametri della potenza
-* @param e_coeff esponente dell'esponenziale
-* @param k_coeff coefficiente dell'esponenziale
+* @brief set the value of the power
+* @param e_coeff exponent
+* @param k_coeff coefficient of the power
 */
 void Power::SetPower(double new_k_coeff, double new_e_coeff)
 {
-    if(k_coeff!=0||e_coeff!=0)
+    if(e_coeff!=-0.00001)
     {
         Reset();
     }
@@ -75,29 +78,41 @@ void Power::SetPower(double new_k_coeff, double new_e_coeff)
 }
 
 /**
- * @brief resetta la potenza
+ * @brief reset the power
  */
 void Power::Reset(){
-    e_coeff=0;
+    e_coeff=-0.00001;
     k_coeff=0;
 }
 
 /**
- * @brief da lo stato dell'oggetto
+ * @brief return the state of the object
  */ 
 void Power::Dump() {
+
+    if (e_coeff == -0.00001) {
+		cout << "Uninitialized Power" << endl;
+		return;
+	}
+
 	cout << "Potenza: " << e_coeff << endl;
     cout << "Coefficiente della potenza: " << k_coeff <<endl;
 	cout << endl;
 }
 
 /**
- * @brief da il risultato
- * @param in valore della base dell'esponente
+ * @brief return the result
+ * @param in base of the power
+ * @return result of the power
  */ 
 double Power::GetValue(double in){
     double result;
     double x=in;
+    if(x==0&&e_coeff==0)
+    {
+        cout<<" Zero to the zero is an indeterminate form "<<endl;
+        exit(-1);
+    }
     int i;
     for(i=1;i<e_coeff;i++)
     {

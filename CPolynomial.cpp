@@ -1,34 +1,33 @@
-/** 
- * @file CPolynomial.cpp
- *	@brief Implementazione della classe CPolynomial.h
- *	@author Federico Maria Biasioli Loris Costanzo
- */ 
-#include "CPolynomial.h"
+/*! @file CPolinomial.cpp
+ 	@brief Implementation of class CPolinomial.h
+	@author Federico Maria Biasioli Loris Costanzo
+*/ 
+#include "CPolinomial.h"
 
 /**
- * @brief costruttore di default
+ * @brief default constructor
  */
-Polynomial::Polynomial() {
+Polinomial::Polinomial() {
 	degree=-1;
 	coeff = NULL;
 }
 
 
 /**
- * @brief costruttore
- * @param coefficients array con i coefficienti
- * @param size dimensione degli array
+ * @brief constructor
+ * @param coefficients array with coefficients
+ * @param size array size
  */
-Polynomial::Polynomial(const double* coefficients, int size) {
+Polinomial::Polinomial(const double* coefficients, int size) {
 	degree = -1;
 	coeff = NULL;
-	SetPolynomial(coefficients,size);
+	SetPolinomial(coefficients,size);
 }
 
 /**
- * @brief distruttore
+ * @brief destructor
  */
-Polynomial::~Polynomial() {
+Polinomial::~Polinomial() {
     
 	if (coeff != NULL) {
 		delete coeff;
@@ -37,9 +36,9 @@ Polynomial::~Polynomial() {
 }
 
 /**
- * @brief copia costruttore
+ * @brief copy constructor
  */
-Polynomial::Polynomial(const Polynomial& p) {
+Polinomial::Polinomial(const Polinomial& p) {
 	
 	int i;
 	
@@ -59,11 +58,11 @@ Polynomial::Polynomial(const Polynomial& p) {
 }
 
 /**
- * @brief overload operatore =
- * @param p oggetto da copiare
- * @return copia dell'oggetto
+ * @brief overload operator =
+ * @param p object to copy
+ * @return copy of the object
  */
-Polynomial& Polynomial::operator=(const Polynomial& p) {
+Polinomial& Polinomial::operator=(const Polinomial& p) {
     
 	int i; 
 	
@@ -82,8 +81,8 @@ Polynomial& Polynomial::operator=(const Polynomial& p) {
     return *this;
 }
 
-/// @brief overload operatore ==
-bool Polynomial::operator==(const Polynomial& p) {
+/// @brief overload operator ==
+bool Polinomial::operator==(const Polinomial& p) {
 	
 	int i;
 	
@@ -100,16 +99,16 @@ bool Polynomial::operator==(const Polynomial& p) {
 }
 
 /**
- * @brief imposta i coefficienti del polinomio
- * @param coefficients array con i coefficients (format: c0+c1*x+ ...)
- * @param size dimensioni dell'array
+ * @brief set the coefficients of the polinomial
+ * @param coefficients array with coefficients (format: c0+c1*x+ ...)
+ * @param size size of the array
  */
-void Polynomial::SetPolynomial(const double* coefficients, int size) {
+void Polinomial::SetPolinomial(const double* coefficients, int size) {
 	
 	int i=0;
 	
 	if (size < 1) {
-		ErrorMessage("SetPolynomial: the degree of the Polynomial cannot be negative");
+		ErrorMessage("SetPolinomial: the degree of the Polinomial cannot be negative");
 		exit(-1);
 	}
 	
@@ -119,7 +118,7 @@ void Polynomial::SetPolynomial(const double* coefficients, int size) {
 	degree = size - 1;
     coeff = new double[size]; // restituisce double* dove 
 	if (coeff == NULL) {
-		ErrorMessage("SetPolynomial: cannot allocate memory");
+		ErrorMessage("SetPolinomial: cannot allocate memory");
 		exit(-1);
 	}
 	
@@ -129,11 +128,11 @@ void Polynomial::SetPolynomial(const double* coefficients, int size) {
 }
 
 /**
- * @brief ristituisce il valore della funzione
+ * @brief return the result of the polinomial
  * @param in input
- * @return valore della funzione
+ * @return value of the polinomial
  */
-double Polynomial::GetValue(double in) const {
+double Polinomial::GetValue(double in) {
     int i;
 	double x = in;
 	double result = 0.0;
@@ -148,9 +147,9 @@ double Polynomial::GetValue(double in) const {
 }
 
 /**
- * @brief resetta il polinomio
+ * @brief reset the polinomial
  */ 
-void Polynomial::Reset() {
+void Polinomial::Reset() {
 	
 	degree = -1; 
 	if (coeff != NULL) {
@@ -160,36 +159,36 @@ void Polynomial::Reset() {
 }
 
 /**
- * @brief scrive un messaggio di errore 
- * @param string messaggio da stampare
+ * @brief write an error message 
+ * @param string message to print
  */
-void Polynomial::ErrorMessage(const char *string) {
+void Polinomial::ErrorMessage(const char *string) {
 	
-	cout << endl << "ERROR -- Polynomial --";
+	cout << endl << "ERROR -- Polinomial --";
 	cout << string << endl;
 
 }
 
 /**
- * @brief scrive un messaggio di warning
- * @param string messaggio da stampare
+ * @brief write an warning message
+ * @param string message to print
  */ 
-void Polynomial::WarningMessage(const char *string) {
+void Polinomial::WarningMessage(const char *string) {
 	
-	cout << endl << "WARNING -- Polynomial --";
+	cout << endl << "WARNING -- Polinomial --";
 	cout << string << endl;
 
 }
 
 /**
- * @brief da lo stato dell'oggetto
+ * @brief print the object
  */ 
-void Polynomial::Dump() {
+void Polinomial::Dump() {
 
 	int i;
 	
 	if (degree == -1) {
-		cout << "Uninitialized polynomial" << endl;
+		cout << "Uninitialized Polinomial" << endl;
 		return;
 	}
 	

@@ -1,5 +1,5 @@
 /*! @file CPower.h
-    @brief File h della classe Power
+    @brief File h for class power
     @author Federico Maria Biasioli Loris Costanzo
 */
 
@@ -10,14 +10,16 @@
 #include <cmath>
 #include <cstring>
 #include "CFunction.h"
-
-class Power:public Function{
+/// @class Power
+/// @brief Class for power
+class Power : public Function
+{
 private:
     double k_coeff;
     double e_coeff;
 
 public:
-    /// @name Costruttori/Distruttore
+    /// @name Constructors and Destructor 
     /// @{
     Power();
     Power(double k_coeff, double e_coeff);
@@ -25,22 +27,30 @@ public:
     ~Power();
     /// @}
 
-    /// @name Operatori
+    /// @name Operators
     /// @{
     Power &operator=(const Power &p);
     bool operator==(const Power &p);
     /// @}
 
-    /// @name DEBUG and SERIALIZATION
+    /// @name Debug e serialization
     /// @{
     void Dump();
     /// @}
-    
-    /// @name Altre funzioni
-    /// @{
-    double GetValue(double in);
-    void Reset();
+
+    ///@name Setter
+    ///@{
     void SetPower(double k_coef, double e_coeff);
+    ///@}
+
+    ///@name Getter
+    ///@{
+    double GetValue(double in);
+    ///@}
+
+    /// @name Basic function
+    /// @{
+    void Reset();
     /// @}
 };
 #endif
